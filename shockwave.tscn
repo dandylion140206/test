@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bem30gm115a3i"]
+
+[ext_resource type="Script" uid="uid://daqb5yt5eyris" path="res://shockwave.gd" id="1_yccnn"]
+[ext_resource type="Script" uid="uid://c47n7q56755gc" path="res://shockwave_visual.gd" id="2_yv332"]
+
+[node name="Shockwave" type="Area2D" unique_id=1959227695]
+script = ExtResource("1_yccnn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1465394059]
+
+[node name="ShockwaveVisual" type="Node2D" parent="." unique_id=1971419384]
+script = ExtResource("2_yv332")

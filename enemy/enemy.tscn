@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://5qn18msgceeu"]
+
+[ext_resource type="Script" uid="uid://cn388ovfphrf" path="res://enemy/enemy.gd" id="1_ppra6"]
+[ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://enemy/visual.gd" id="2_p200p"]
+[ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://enemy/hurtbox.gd" id="3_p200p"]
+[ext_resource type="Script" uid="uid://crjfooorcathw" path="res://enemy/motor.gd" id="3_pmsee"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ua4af"]
+radius = 40.0
+
+[node name="Enemy" type="Node2D" unique_id=703489279]
+script = ExtResource("1_ppra6")
+
+[node name="Visual" type="Node2D" parent="." unique_id=1362698468]
+script = ExtResource("2_p200p")
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=332654126]
+collision_mask = 0
+script = ExtResource("3_p200p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1411652667]
+shape = SubResource("CircleShape2D_ua4af")
+
+[node name="Motor" type="Node2D" parent="." unique_id=2118102438]
+script = ExtResource("3_pmsee")
