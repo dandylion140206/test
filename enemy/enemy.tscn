@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" uid="uid://cn388ovfphrf" path="res://enemy/enemy.gd" id="1_ppra6"]
 [ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://enemy/visual.gd" id="2_p200p"]
-[ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://enemy/hurtbox.gd" id="3_p200p"]
-[ext_resource type="Script" uid="uid://crjfooorcathw" path="res://enemy/motor.gd" id="3_pmsee"]
+[ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://hurtbox.gd" id="3_p200p"]
+[ext_resource type="Script" uid="uid://b1xabiugenu63" path="res://enemy/impulse.gd" id="4_p200p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ua4af"]
 radius = 40.0
 
-[node name="Enemy" type="Node2D" unique_id=703489279]
+[node name="Enemy" type="Node2D" unique_id=1369556710]
 script = ExtResource("1_ppra6")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1362698468]
@@ -21,5 +21,5 @@ script = ExtResource("3_p200p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1411652667]
 shape = SubResource("CircleShape2D_ua4af")
 
-[node name="Motor" type="Node2D" parent="." unique_id=2118102438]
-script = ExtResource("3_pmsee")
+[node name="ImpulseComponent" type="Node" parent="." unique_id=663441355]
+script = ExtResource("4_p200p")
