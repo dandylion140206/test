@@ -1,20 +1,28 @@
+class_name Enemy
 extends Node2D
 
 @onready var hurtbox: Hurtbox = $Hurtbox
-@onready var impulse: ImpulseComponent = $ImpulseComponent
+@onready var impulse: Impulse = $Impulse
+@onready var movement: Movement = $Movement
 
-var move_velocity: Vector2 = Vector2.ZERO
+## スポーン前に外部から注入される行動範囲
+var spawn_area: Rect2 = Rect2()
 
 
 func _ready() -> void:
 	hurtbox.hit_taken.connect(_on_hit_taken)
+	movement.wander_bounds = spawn_area
 
 
 func _physics_process(delta: float) -> void:
-
-
-	position += (impulse.get_velocity()) * delta
+	movement.update(delta, global_position)
+	position += (movement.velocity + impulse.velocity) * delta
 	impulse.update(delta)
+
+
+func set_target(value: Node2D) -> void:
+	movement.target = value
+
 
 func _on_hit_taken(hit_data: HitData) -> void:
 	impulse.add_impulse(hit_data.impulse)

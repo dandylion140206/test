@@ -4,15 +4,26 @@
 [ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://enemy/visual.gd" id="2_p200p"]
 [ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://hurtbox.gd" id="3_p200p"]
 [ext_resource type="Script" uid="uid://b1xabiugenu63" path="res://enemy/impulse.gd" id="4_p200p"]
+[ext_resource type="Script" uid="uid://c7a4pjh5kja0v" path="res://enemy/movement_preview.gd" id="5_1wwld"]
+[ext_resource type="Script" uid="uid://cix6nlje21ujs" path="res://enemy/movement.gd" id="5_pmsee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ua4af"]
 radius = 40.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1wwld"]
+frequency = 1.0
+fractal_octaves = 3
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y5vj3"]
+frequency = 3.0
+fractal_octaves = 1
 
 [node name="Enemy" type="Node2D" unique_id=1369556710]
 script = ExtResource("1_ppra6")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1362698468]
 script = ExtResource("2_p200p")
+color = Color(0.37130004, 0.79, 0.72719496, 1)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=332654126]
 collision_mask = 0
@@ -21,5 +32,15 @@ script = ExtResource("3_p200p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=1411652667]
 shape = SubResource("CircleShape2D_ua4af")
 
-[node name="ImpulseComponent" type="Node" parent="." unique_id=663441355]
+[node name="Movement" type="Node" parent="." unique_id=1154250104]
+script = ExtResource("5_pmsee")
+
+[node name="Preview" type="Node2D" parent="Movement" unique_id=675415227]
+visible = false
+script = ExtResource("5_1wwld")
+wander_noise = SubResource("FastNoiseLite_1wwld")
+chase_noise = SubResource("FastNoiseLite_y5vj3")
+chase_noise_frequency = 3.0
+
+[node name="Impulse" type="Node" parent="." unique_id=663441355]
 script = ExtResource("4_p200p")

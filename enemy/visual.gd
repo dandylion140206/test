@@ -1,5 +1,5 @@
 @tool
-class_name Vsiual
+class_name Visual
 extends Node2D
 
 @export var radius: float = 40.0:

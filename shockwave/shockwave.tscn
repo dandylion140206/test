@@ -6,7 +6,7 @@
 [node name="Shockwave" type="Area2D" unique_id=1959227695]
 script = ExtResource("1_yccnn")
 damage = 10.0
-impulse_strength = -2260.0
+impulse_strength = 1710.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1465394059]
 

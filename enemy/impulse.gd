@@ -1,9 +1,12 @@
-class_name ImpulseComponent
+class_name Impulse
 extends Node
 
 @export_range(0.0, 10000.0, 10.0) var max_speed: float = 5000.0
 @export_range(0.0, 50.0, 1.0) var damping: float = 20.0
 @export_range(0.0, 100.0, 1.0) var stop_threshold: float = 10.0
+
+var velocity: Vector2:
+	get: return _velocity.limit_length(max_speed)
 
 var _velocity: Vector2 = Vector2.ZERO
 

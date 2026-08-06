@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var shockwave_secne: PackedScene
+@export var shockwave_scene: PackedScene
 @export var cooldown: float = 0.1
 
 var _can_fire: bool = true
@@ -15,7 +15,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func _fire_shockwave(spawn_position: Vector2) -> void:
 	_can_fire = false
 
-	var shockwave: Shockwave = shockwave_secne.instantiate()
+	var shockwave: Shockwave = shockwave_scene.instantiate()
 	add_child(shockwave)
 	shockwave.global_position = spawn_position
 
