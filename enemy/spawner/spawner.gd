@@ -2,7 +2,7 @@ class_name Spawner
 extends Node2D
 
 @export var enemy_scene: PackedScene
-@export var spawn_area: SpawnArea
+@export var territory: Territory
 @export var crowd_manager: EnemyCrowdManager
 @export_range(0, 500, 1) var count: int = 30
 
@@ -23,12 +23,12 @@ func spawn() -> Enemy:
 		return null
 
 	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.wander_area = spawn_area
+	enemy.territory = territory
 
 	var parent: Node = spawn_parent if spawn_parent != null else get_parent()
 	parent.add_child(enemy)
 
-	enemy.global_position = spawn_area.random_point() if spawn_area != null else global_position
+	enemy.global_position = territory.random_point() if territory != null else global_position
 	if _target != null:
 		enemy.set_target(_target)
 	crowd_manager.register_enemy(enemy)

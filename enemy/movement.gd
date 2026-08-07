@@ -14,7 +14,7 @@ extends Node
 @export_group("Bounds")
 @export_range(0.0, 500.0, 10.0) var boundary_margin: float = 60.0
 
-var wander_area: SpawnArea = null
+var territory: Territory = null
 var target: Node2D = null
 
 var velocity: Vector2:
@@ -74,20 +74,23 @@ func _chase_direction(global_position: Vector2) -> Vector2:
 # --- 境界処理 ---
 
 func _steer_inward(direction: Vector2, global_position: Vector2) -> Vector2:
-	if wander_area == null:
+	if territory == null or boundary_margin <= 0.0:
 		return direction
 
-	var to_boundary := wander_area.closest_boundary_point(global_position) - global_position
-	var distance := to_boundary.length()
-	if is_zero_approx(distance):
+	var inner := territory.bounds.grow(-boundary_margin)
+	var inward := Vector2(
+		_axis_overshoot(global_position.x, inner.position.x, inner.end.x, boundary_margin),
+		_axis_overshoot(global_position.y, inner.position.y, inner.end.y, boundary_margin)
+	)
+	if inward.is_zero_approx():
 		return direction
 
-	var is_inside := wander_area.has_point(global_position)
-	if is_inside and distance >= boundary_margin:
-		return direction
+	return direction.slerp(inward.normalized(), minf(inward.length(), 1.0))
 
-	# 範囲内なら境界から離れる向き、範囲外なら境界へ戻る向き
-	var inward := -to_boundary / distance if is_inside else to_boundary / distance
-	var strength := 1.0 - distance / boundary_margin if is_inside else 1.0
 
-	return direction.slerp(inward, strength)
+static func _axis_overshoot(value: float, minimum: float, maximum: float, margin: float) -> float:
+	if value < minimum:
+		return (minimum - value) / margin
+	if value > maximum:
+		return -(value - maximum) / margin
+	return 0.0

@@ -22,24 +22,24 @@ shockwave_scene = ExtResource("2_h2yge")
 [node name="EnemyCrowdManager" type="Node" parent="." unique_id=1303760712]
 process_physics_priority = 100
 script = ExtResource("6_crowd")
-separation_speed = 400.0
+separation_speed = 200.0
 
-[node name="Spawner" type="Node2D" parent="." unique_id=637268081 node_paths=PackedStringArray("spawn_area", "crowd_manager", "spawn_parent")]
+[node name="Spawner" type="Node2D" parent="." unique_id=637268081 node_paths=PackedStringArray("territory", "crowd_manager", "spawn_parent")]
 script = ExtResource("3_1bvp3")
 enemy_scene = ExtResource("3_h2yge")
-spawn_area = NodePath("SpawnArea")
+territory = NodePath("Territory")
 crowd_manager = NodePath("../EnemyCrowdManager")
 count = 260
 spawn_parent = NodePath(".")
 
-[node name="SpawnArea" type="Area2D" parent="Spawner" unique_id=932557147]
+[node name="Territory" type="Area2D" parent="Spawner" unique_id=932557147]
 collision_layer = 0
 collision_mask = 0
 monitoring = false
 monitorable = false
 script = ExtResource("5_7mycd")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/SpawnArea" unique_id=221874125]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/Territory" unique_id=221874125]
 shape = SubResource("RectangleShape2D_r3xot")
 
 [node name="Target" type="Node2D" parent="." unique_id=582287283]
