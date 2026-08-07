@@ -7,12 +7,12 @@ extends Node2D
 @onready var movement: Movement = $Movement
 @onready var impulse: Impulse = $Impulse
 
-var spawn_area: Rect2 = Rect2()
+var wander_area: SpawnArea = null
 
 
 func _ready() -> void:
 	hurtbox.hit_taken.connect(_on_hit_taken)
-	movement.wander_bounds = spawn_area
+	movement.wander_area = wander_area
 
 
 func _physics_process(delta: float) -> void:

@@ -14,9 +14,9 @@ extends Node
 @export_range(0.0, 16.0, 0.1) var chase_noise_frequency: float = 3.0
 
 @export_group("Bounds")
-@export_range(0.0, 500.0, 10.0) var boundary_margin: float = 100.0
+@export_range(0.0, 500.0, 10.0) var boundary_margin: float = 60.0
 
-var wander_bounds: Rect2 = Rect2()
+var wander_area: SpawnArea = null
 var target: Node2D = null
 
 var velocity: Vector2:
@@ -61,10 +61,6 @@ func update(delta: float, global_position: Vector2) -> void:
 	_velocity = _velocity.move_toward(desired_velocity, acceleration * delta)
 
 
-func get_velocity() -> Vector2:
-	return _velocity
-
-
 func clear() -> void:
 	_velocity = Vector2.ZERO
 
@@ -88,23 +84,11 @@ func _chase_direction(global_position: Vector2) -> Vector2:
 # --- 境界処理 ---
 
 func _steer_inward(direction: Vector2, global_position: Vector2) -> Vector2:
-	if wander_bounds.size.is_zero_approx() or boundary_margin <= 0.0:
+	if wander_area == null:
 		return direction
 
-	var inner_bounds := wander_bounds.grow(-boundary_margin)
-	var inward := Vector2(
-		_axis_overshoot(global_position.x, inner_bounds.position.x, inner_bounds.end.x),
-		_axis_overshoot(global_position.y, inner_bounds.position.y, inner_bounds.end.y)
-	)
+	var inward := wander_area.inward_vector(global_position, boundary_margin)
 	if inward.is_zero_approx():
 		return direction
 
 	return direction.slerp(inward.normalized(), minf(inward.length(), 1.0))
-
-
-func _axis_overshoot(value: float, min_value: float, max_value: float) -> float:
-	if value < min_value:
-		return (min_value - value) / boundary_margin
-	if value > max_value:
-		return -(value - max_value) / boundary_margin
-	return 0.0

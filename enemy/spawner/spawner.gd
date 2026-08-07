@@ -2,8 +2,8 @@ class_name Spawner
 extends Node2D
 
 @export var enemy_scene: PackedScene
-@export var area_size: Vector2 = Vector2(1920, 1080)
-@export_range(0, 100, 1) var count: int = 5
+@export var spawn_area: SpawnArea
+@export_range(0, 500, 1) var count: int = 30
 
 @export var spawn_parent: Node
 @export var target_path: NodePath
@@ -22,24 +22,12 @@ func spawn() -> Enemy:
 		return null
 
 	var enemy: Enemy = enemy_scene.instantiate()
-	enemy.spawn_area = get_area()
+	enemy.wander_area = spawn_area
 
 	var parent: Node = spawn_parent if spawn_parent != null else get_parent()
 	parent.add_child(enemy)
 
-	enemy.global_position = _random_point()
+	enemy.global_position = spawn_area.random_point() if spawn_area != null else global_position
 	if _target != null:
 		enemy.set_target(_target)
 	return enemy
-
-
-func get_area() -> Rect2:
-	return Rect2(global_position - area_size * 0.5, area_size)
-
-
-func _random_point() -> Vector2:
-	var area := get_area()
-	return Vector2(
-		randf_range(area.position.x, area.end.x),
-		randf_range(area.position.y, area.end.y)
-	)

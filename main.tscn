@@ -4,7 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bem30gm115a3i" path="res://shockwave/shockwave.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bc54q2qudjpcc" path="res://enemy/spawner/spawner.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5qn18msgceeu" path="res://enemy/enemy.tscn" id="3_h2yge"]
+[ext_resource type="Script" uid="uid://d0nlcakyp6beh" path="res://enemy/spawner/spawn_area.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://p5dgjlr6f51g" path="res://target.gd" id="5_lquwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3xot"]
+size = Vector2(1700, 900)
 
 [node name="Main" type="Node" unique_id=1745596416]
 
@@ -14,12 +18,22 @@ shockwave_scene = ExtResource("2_h2yge")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1751619145]
 
-[node name="Spawner" type="Node2D" parent="." unique_id=637268081 node_paths=PackedStringArray("spawn_parent")]
+[node name="Spawner" type="Node2D" parent="." unique_id=637268081 node_paths=PackedStringArray("spawn_area", "spawn_parent")]
 script = ExtResource("3_1bvp3")
 enemy_scene = ExtResource("3_h2yge")
-area_size = Vector2(1600, 900)
-count = 20
+spawn_area = NodePath("SpawnArea")
+count = 500
 spawn_parent = NodePath(".")
+
+[node name="SpawnArea" type="Area2D" parent="Spawner" unique_id=932557147]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
+script = ExtResource("5_7mycd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/SpawnArea" unique_id=221874125]
+shape = SubResource("RectangleShape2D_r3xot")
 
 [node name="Target" type="Node2D" parent="." unique_id=582287283]
 script = ExtResource("5_lquwl")

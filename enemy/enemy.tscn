@@ -27,8 +27,6 @@ shape = SubResource("CircleShape2D_ua4af")
 
 [node name="Movement" type="Node" parent="." unique_id=1154250104]
 script = ExtResource("5_pmsee")
-wander_speed = 200.0
-boundary_margin = 160.0
 
 [node name="Impulse" type="Node" parent="." unique_id=663441355]
 script = ExtResource("4_p200p")
