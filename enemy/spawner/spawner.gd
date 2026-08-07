@@ -3,6 +3,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 @export var spawn_area: SpawnArea
+@export var crowd_manager: EnemyCrowdManager
 @export_range(0, 500, 1) var count: int = 30
 
 @export var spawn_parent: Node
@@ -30,4 +31,10 @@ func spawn() -> Enemy:
 	enemy.global_position = spawn_area.random_point() if spawn_area != null else global_position
 	if _target != null:
 		enemy.set_target(_target)
+	crowd_manager.register_enemy(enemy)
 	return enemy
+
+
+func despawn(enemy: Enemy) -> void:
+	crowd_manager.unregister_enemy(enemy)
+	enemy.queue_free()

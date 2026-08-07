@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_78et5")
-body_radius = 20.0
-avoidance_radius = 80.0
+body_radius = 24.0
+avoidance_radius = 56.0
 metadata/_custom_type_script = "uid://bfmooueps08eg"
