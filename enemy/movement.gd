@@ -14,7 +14,7 @@ extends Node
 @export_range(0.0, 16.0, 0.1) var chase_noise_frequency: float = 3.0
 
 @export_group("Bounds")
-@export_range(0.0, 500.0, 10.0) var boundary_margin: float = 60.0
+@export_range(0.0, 500.0, 10.0) var boundary_margin: float = 100.0
 
 var wander_bounds: Rect2 = Rect2()
 var target: Node2D = null

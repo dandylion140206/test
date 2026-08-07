@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://c3a0n6obhhjxb" path="res://input.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bem30gm115a3i" path="res://shockwave/shockwave.tscn" id="2_h2yge"]
-[ext_resource type="Script" uid="uid://bc54q2qudjpcc" path="res://spawner.gd" id="3_1bvp3"]
+[ext_resource type="Script" uid="uid://bc54q2qudjpcc" path="res://enemy/spawner/spawner.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5qn18msgceeu" path="res://enemy/enemy.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://p5dgjlr6f51g" path="res://target.gd" id="5_lquwl"]
 
@@ -18,7 +18,7 @@ shockwave_scene = ExtResource("2_h2yge")
 script = ExtResource("3_1bvp3")
 enemy_scene = ExtResource("3_h2yge")
 area_size = Vector2(1600, 900)
-count = 38
+count = 20
 spawn_parent = NodePath(".")
 
 [node name="Target" type="Node2D" parent="." unique_id=582287283]

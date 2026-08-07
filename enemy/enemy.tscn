@@ -1,25 +1,18 @@
 [gd_scene format=3 uid="uid://5qn18msgceeu"]
 
 [ext_resource type="Script" uid="uid://cn388ovfphrf" path="res://enemy/enemy.gd" id="1_ppra6"]
+[ext_resource type="Resource" uid="uid://ds5gvweu2as7a" path="res://enemy/normal_enemy_stats.tres" id="2_1wwld"]
 [ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://enemy/visual.gd" id="2_p200p"]
 [ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://hurtbox.gd" id="3_p200p"]
 [ext_resource type="Script" uid="uid://b1xabiugenu63" path="res://enemy/impulse.gd" id="4_p200p"]
-[ext_resource type="Script" uid="uid://c7a4pjh5kja0v" path="res://enemy/movement_preview.gd" id="5_1wwld"]
 [ext_resource type="Script" uid="uid://cix6nlje21ujs" path="res://enemy/movement.gd" id="5_pmsee"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ua4af"]
 radius = 40.0
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_1wwld"]
-frequency = 1.0
-fractal_octaves = 3
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_y5vj3"]
-frequency = 3.0
-fractal_octaves = 1
-
 [node name="Enemy" type="Node2D" unique_id=1369556710]
 script = ExtResource("1_ppra6")
+stats = ExtResource("2_1wwld")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1362698468]
 script = ExtResource("2_p200p")
@@ -34,13 +27,8 @@ shape = SubResource("CircleShape2D_ua4af")
 
 [node name="Movement" type="Node" parent="." unique_id=1154250104]
 script = ExtResource("5_pmsee")
-
-[node name="Preview" type="Node2D" parent="Movement" unique_id=675415227]
-visible = false
-script = ExtResource("5_1wwld")
-wander_noise = SubResource("FastNoiseLite_1wwld")
-chase_noise = SubResource("FastNoiseLite_y5vj3")
-chase_noise_frequency = 3.0
+wander_speed = 200.0
+boundary_margin = 160.0
 
 [node name="Impulse" type="Node" parent="." unique_id=663441355]
 script = ExtResource("4_p200p")

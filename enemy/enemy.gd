@@ -1,11 +1,12 @@
 class_name Enemy
 extends Node2D
 
-@onready var hurtbox: Hurtbox = $Hurtbox
-@onready var impulse: Impulse = $Impulse
-@onready var movement: Movement = $Movement
+@export var stats: EnemyStats
 
-## スポーン前に外部から注入される行動範囲
+@onready var hurtbox: Hurtbox = $Hurtbox
+@onready var movement: Movement = $Movement
+@onready var impulse: Impulse = $Impulse
+
 var spawn_area: Rect2 = Rect2()
 
 
@@ -25,4 +26,4 @@ func set_target(value: Node2D) -> void:
 
 
 func _on_hit_taken(hit_data: HitData) -> void:
-	impulse.add_impulse(hit_data.impulse)
+	impulse.add_impulse(hit_data.impulse * stats.inverse_mass)

@@ -4,9 +4,8 @@ extends Node2D
 @export var enemy_scene: PackedScene
 @export var area_size: Vector2 = Vector2(1920, 1080)
 @export_range(0, 100, 1) var count: int = 5
-## 生成した敵の親。未設定なら Spawner の親
+
 @export var spawn_parent: Node
-## 追従対象。未設定なら放浪のみ
 @export var target_path: NodePath
 
 var _target: Node2D = null
