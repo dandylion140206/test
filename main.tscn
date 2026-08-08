@@ -22,14 +22,14 @@ shockwave_scene = ExtResource("2_h2yge")
 [node name="EnemyCrowdManager" type="Node" parent="." unique_id=1303760712]
 process_physics_priority = 100
 script = ExtResource("6_crowd")
-separation_speed = 200.0
+separation_speed = 300.0
 
 [node name="Spawner" type="Node2D" parent="." unique_id=637268081 node_paths=PackedStringArray("territory", "crowd_manager", "spawn_parent")]
 script = ExtResource("3_1bvp3")
 enemy_scene = ExtResource("3_h2yge")
 territory = NodePath("Territory")
 crowd_manager = NodePath("../EnemyCrowdManager")
-count = 260
+count = 200
 spawn_parent = NodePath(".")
 
 [node name="Territory" type="Area2D" parent="Spawner" unique_id=932557147]

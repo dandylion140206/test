@@ -16,9 +16,11 @@ stats = ExtResource("2_1wwld")
 
 [node name="Visual" type="Node2D" parent="." unique_id=1362698468]
 script = ExtResource("2_p200p")
-color = Color(0.37130004, 0.79, 0.72719496, 1)
+color = Color(0, 0.7374943, 0.88113433, 1)
+outline_color = Color(0.09799999, 0.2156, 0.35, 1)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=332654126]
+visible = false
 collision_mask = 0
 script = ExtResource("3_p200p")
 
