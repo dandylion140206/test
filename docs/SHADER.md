@@ -11,8 +11,9 @@
 
 ## エントリ関数の制約
 
-- `vertex()`、`fragment()`、`light()` は Godot が呼び出す `void` のエントリ関数である。
-- これらのエントリ関数内で早期 `return` を使用してはならない。Godot Shader Language ではコンパイルエラーになる。
+`vertex()`、`fragment()`、`light()` は、Godotが呼び出す `void` のエントリ関数である。
+
+- エントリ関数内で早期 `return` を使用してはならない。Godot Shader Languageではコンパイルエラーになる。
 - 条件によって処理を打ち切りたい場合は、`if / else` で分岐し、各分岐で出力変数を代入する。
 
 ```glsl

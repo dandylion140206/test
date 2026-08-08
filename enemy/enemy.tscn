@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://hurtbox.gd" id="3_p200p"]
 [ext_resource type="Script" uid="uid://b1xabiugenu63" path="res://enemy/impulse.gd" id="4_p200p"]
 [ext_resource type="Script" uid="uid://cix6nlje21ujs" path="res://enemy/movement.gd" id="5_pmsee"]
+[ext_resource type="Script" uid="uid://dhs3rfttbt6xs" path="res://health.gd" id="7_y5vj3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ua4af"]
 radius = 40.0
@@ -17,10 +18,10 @@ stats = ExtResource("2_1wwld")
 [node name="Visual" type="Node2D" parent="." unique_id=1362698468]
 script = ExtResource("2_p200p")
 color = Color(0, 0.7374943, 0.88113433, 1)
+outline_width = 3.0
 outline_color = Color(0.09799999, 0.2156, 0.35, 1)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=332654126]
-visible = false
 collision_mask = 0
 script = ExtResource("3_p200p")
 
@@ -32,3 +33,6 @@ script = ExtResource("5_pmsee")
 
 [node name="Impulse" type="Node" parent="." unique_id=663441355]
 script = ExtResource("4_p200p")
+
+[node name="Health" type="Node" parent="." unique_id=1187650352]
+script = ExtResource("7_y5vj3")

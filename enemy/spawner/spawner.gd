@@ -32,6 +32,7 @@ func spawn() -> Enemy:
 	if _target != null:
 		enemy.set_target(_target)
 	crowd_manager.register_enemy(enemy)
+	enemy.died.connect(despawn)
 	return enemy
 
 

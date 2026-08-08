@@ -31,7 +31,7 @@
 
 `snake_case`を使用する。
 
-- 何らかの出来事が発生したことを通知する Signal は、`changed`、`finished`、`died` など、何が起きたか分かる過去形の名前を使用する。
+- 何らかの出来事が発生したことを通知するSignalは、`changed`、`finished`、`died` など、過去形で何が起きたかを明示する。
 
 ### Enum
 
@@ -115,7 +115,7 @@ Enum名は `PascalCase`を使用し、メンバには `CONSTANT_CASE` を使用�
 
 - 型が異なる可能性のある値を、特定の型として扱えるか確認する必要がある場合は、`as` による型キャストを使用してよい。
 
-    ```
+    ```gdscript
     var player := body as Player
     if player == null:
         return
@@ -125,15 +125,15 @@ Enum名は `PascalCase`を使用し、メンバには `CONSTANT_CASE` を使用�
 
 ### Node の参照
 
-Scene 内の Node をメンバー変数として参照する場合は、原則として `@onready` を使用する。
+Scene内のNodeをメンバー変数として参照する場合は、原則として `@onready` を使用する。
 
 ```gdscript
 @onready var sprite: Sprite2D = $Sprite2D
 ```
 
-- スクリプトを持つ Node からの相対的な位置関係が明確で、Scene 構造の一部として扱う Node は `$` で参照する。
-- Scene 内で位置が変わる可能性がある Node や、階層構造に依存せず参照したい重要な Node には Scene Unique Name を設定し、`%` で参照する。
-- 単にパスを短くする目的で Scene Unique Name を使用しない。
+- スクリプトを持つ Node からの相対的な位置関係が明確で、Scene構造の一部として扱うNodeは `$` で参照する。
+- Scene 内で位置が変わる可能性があるNode や、階層構造に依存せず参照したい重要な Node にはScene Unique Nameを設定し、`%` で参照する。
+- 単にパスを短くする目的でScene Unique Nameを使用しない。
 
 ```gdscript
 @onready var sprite: Sprite2D = $Visuals/Sprite2D
@@ -143,16 +143,23 @@ Scene 内の Node をメンバー変数として参照する場合は、原則�
 ## エラーハンドリング
 
 - 実際に発生し得る失敗のみ処理し、設計上保証される条件に過剰な防御処理を追加しない。
-- Godot API が返す `Error` や `null` をその契約に従って処理し、欠如が正常に起こり得る場合のみ nullable な取得方法を使用する。
+- Godot APIが返す `Error` や `null` をその契約に従って処理し、欠如が正常に起こり得る場合のみ nullable な取得方法を使用する。
 - 成立すべき前提条件の検証には `assert`、実行を継続しながら異常を報告する場合は `push_error` または `push_warning` を使用する。
 - 異常を黙って無視したり、不適切なフォールバックや早期 return で隠したりしない。
 
 ## コメント
 
-コメントは仕様は最低限にする。
+コメントは最低限にする。
 
 内容に応じて次を使用する。
 
 - NOTE: 実装の意図・想定用途・背景
 - TODO: 未実装の作業が残っている
 - FIXME: 問題があり、修正が必要
+
+### セクション区切り
+
+ファイル内の変数や関数が多く、役割ごとに分けた方が読みやすい場合のみ、`# --- セクション名 ---` の形式で区切る。
+
+- セクション名には、その範囲の役割を簡潔に表す名前を付ける。
+- 小規模なスクリプトでは、不要なセクション区切りを追加しない。

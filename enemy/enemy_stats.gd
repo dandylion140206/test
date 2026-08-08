@@ -1,6 +1,7 @@
 class_name EnemyStats
 extends Resource
 
+@export_range(1.0, 1000.0, 1.0, "or_greater") var max_health: float = 100.0
 @export_range(0.01, 100.0, 0.01, "or_greater") var mass: float = 1.0
 
 @export_group("Crowd")

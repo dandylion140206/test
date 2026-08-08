@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bem30gm115a3i" path="res://shockwave/shockwave.tscn" id="2_h2yge"]
 [ext_resource type="Script" uid="uid://bc54q2qudjpcc" path="res://enemy/spawner/spawner.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5qn18msgceeu" path="res://enemy/enemy.tscn" id="3_h2yge"]
-[ext_resource type="Script" uid="uid://d0nlcakyp6beh" path="res://enemy/spawner/spawn_area.gd" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://d0nlcakyp6beh" path="res://enemy/spawner/territory.gd" id="5_7mycd"]
 [ext_resource type="Script" uid="uid://p5dgjlr6f51g" path="res://target.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://mopa22awli4a" path="res://enemy/enemy_crowd_manager.gd" id="6_crowd"]
 

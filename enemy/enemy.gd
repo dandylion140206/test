@@ -1,9 +1,12 @@
 class_name Enemy
 extends Node2D
 
+signal died
+
 @export var stats: EnemyStats
 
 @onready var hurtbox: Hurtbox = $Hurtbox
+@onready var health: Health = $Health
 @onready var movement: Movement = $Movement
 @onready var impulse: Impulse = $Impulse
 
@@ -11,8 +14,12 @@ var territory: Territory = null
 
 
 func _ready() -> void:
-	hurtbox.hit_taken.connect(_on_hit_taken)
+
+	health.max_health = stats.max_health
 	movement.territory = territory
+
+	hurtbox.hit_taken.connect(_on_hit_taken)
+	health.died.connect(_on_died)
 
 
 func _physics_process(delta: float) -> void:
@@ -26,4 +33,9 @@ func set_target(value: Node2D) -> void:
 
 
 func _on_hit_taken(hit_data: HitData) -> void:
+	health.take_damage(hit_data.damage)
 	impulse.add_impulse(hit_data.impulse * stats.inverse_mass)
+
+func _on_died() -> void:
+	died.emit(self)
+	queue_free()
