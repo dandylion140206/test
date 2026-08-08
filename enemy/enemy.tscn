@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cn388ovfphrf" path="res://enemy/enemy.gd" id="1_ppra6"]
 [ext_resource type="Resource" uid="uid://ds5gvweu2as7a" path="res://enemy/normal_enemy_stats.tres" id="2_1wwld"]
-[ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://enemy/visual.gd" id="2_p200p"]
+[ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://circle.gd" id="2_p200p"]
 [ext_resource type="Script" uid="uid://dkehkooutnvon" path="res://hurtbox.gd" id="3_p200p"]
 [ext_resource type="Script" uid="uid://b1xabiugenu63" path="res://enemy/impulse.gd" id="4_p200p"]
 [ext_resource type="Script" uid="uid://cix6nlje21ujs" path="res://enemy/movement.gd" id="5_pmsee"]

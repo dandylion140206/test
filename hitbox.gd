@@ -2,9 +2,7 @@ class_name Hitbox
 extends Area2D
 
 @export_range(0.0, 1000.0, 0.1) var damage: float = 0.0
-@export_range(-10000.0, 10000.0, 10.0) var impulse_strength: float = 0.0
-
-var _hit_hurtboxes: Array[Hurtbox] = []
+@export_range(-5000.0, 5000.0, 10.0) var impulse_strength: float = 0.0
 
 
 func _ready() -> void:
@@ -15,19 +13,25 @@ func _on_area_entered(area: Area2D) -> void:
 	var hurtbox := area as Hurtbox
 	if hurtbox == null:
 		return
-	if hurtbox in _hit_hurtboxes:
-		return
-	_hit_hurtboxes.append(hurtbox)
 
-	hurtbox.take_hit(_build_hit_data(hurtbox))
+	_hit(hurtbox, _impulse_direction(hurtbox))
 
 
-func _build_hit_data(hurtbox: Hurtbox) -> HitData:
-	var hit_data := HitData.new()
-	hit_data.damage = damage
-	if not is_zero_approx(impulse_strength):
-		hit_data.impulse = _impulse_direction(hurtbox) * impulse_strength
-	return hit_data
+func _hit(hurtbox: Hurtbox, impulse_direction: Vector2) -> void:
+	hurtbox.take_hit(
+		_calculate_damage(hurtbox),
+		_calculate_impulse(hurtbox, impulse_direction)
+	)
+
+
+func _calculate_damage(_hurtbox: Hurtbox) -> float:
+	return damage
+
+
+func _calculate_impulse(_hurtbox: Hurtbox, impulse_direction: Vector2) -> Vector2:
+	if is_zero_approx(impulse_strength):
+		return Vector2.ZERO
+	return impulse_direction * impulse_strength
 
 
 func _impulse_direction(hurtbox: Hurtbox) -> Vector2:

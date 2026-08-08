@@ -32,9 +32,10 @@ func set_target(value: Node2D) -> void:
 	movement.target = value
 
 
-func _on_hit_taken(hit_data: HitData) -> void:
-	health.take_damage(hit_data.damage)
-	impulse.add_impulse(hit_data.impulse * stats.inverse_mass)
+func _on_hit_taken(damage: float, impulse_value: Vector2) -> void:
+	health.take_damage(damage)
+	impulse.add_impulse(impulse_value * stats.inverse_mass)
+
 
 func _on_died() -> void:
 	died.emit(self)

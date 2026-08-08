@@ -5,13 +5,15 @@
 [ext_resource type="Script" uid="uid://bc54q2qudjpcc" path="res://enemy/spawner/spawner.gd" id="3_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://5qn18msgceeu" path="res://enemy/enemy.tscn" id="3_h2yge"]
 [ext_resource type="Script" uid="uid://d0nlcakyp6beh" path="res://enemy/spawner/territory.gd" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://p5dgjlr6f51g" path="res://target.gd" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://p5dgjlr6f51g" path="res://ball.gd" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://mopa22awli4a" path="res://enemy/enemy_crowd_manager.gd" id="6_crowd"]
+[ext_resource type="Script" uid="uid://0wcea4ps7xpj" path="res://circle.gd" id="7_circle"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3xot"]
 size = Vector2(1700, 900)
 
 [node name="Main" type="Node" unique_id=1745596416]
+physics_interpolation_mode = 2
 
 [node name="Input" type="Node2D" parent="." unique_id=158748448]
 script = ExtResource("1_0xm2m")
@@ -29,7 +31,7 @@ script = ExtResource("3_1bvp3")
 enemy_scene = ExtResource("3_h2yge")
 territory = NodePath("Territory")
 crowd_manager = NodePath("../EnemyCrowdManager")
-count = 200
+count = 500
 spawn_parent = NodePath(".")
 
 [node name="Territory" type="Area2D" parent="Spawner" unique_id=932557147]
@@ -42,5 +44,28 @@ script = ExtResource("5_7mycd")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spawner/Territory" unique_id=221874125]
 shape = SubResource("RectangleShape2D_r3xot")
 
-[node name="Target" type="Node2D" parent="." unique_id=582287283]
+[node name="Ball" type="Area2D" parent="." unique_id=582287283]
+physics_interpolation_mode = 1
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+monitorable = false
 script = ExtResource("5_lquwl")
+radius = 36.0
+target_speed = 4000.0
+acceleration = 6000.0
+damage_per_speed = 0.005
+impulse_per_speed = 0.6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=1749362814]
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="Ball" unique_id=1393917205]
+enabled = false
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="Visual" type="Node2D" parent="Ball" unique_id=1746658734]
+script = ExtResource("7_circle")
+color = Color(0.95, 0.35, 0.15, 1)
+outline_width = 3.0
+outline_color = Color(0.3, 0.05, 0.02, 1)
